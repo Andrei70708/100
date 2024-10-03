@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример меню с подменю и панелью</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .top-panel {
+            background-color: #2c3e50;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #2980b9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-panel .logo {
+            color: #ecf0f1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .top-panel .top-btn {
+            background-color: #3498db;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .top-panel .top-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3498db;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2980b9;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .main-content {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-right: 3px solid #ecf0f1;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 15px;
+            background-color: #34495e;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #3d566e;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .submenu-item {
+            padding: 8px 0;
+        }
+
+        .submenu-item a {
+            color: #bdc3c7;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .submenu-item a:hover {
+            color: #ecf0f1;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .right-sidebar {
+            width: 300px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-left: 3px solid #bdc3c7;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search-bar input:focus {
+            border-color: #3498db;
+        }
+
+        .feedback-section {
+            margin-bottom: 20px;
+        }
+
+        .feedback-section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .feedback-section textarea:focus {
+            border-color: #3498db;
+        }
+
+        .feedback-section button {
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .feedback-section button:hover {
+            background-color: #2980b9;
+        }
+
+        .telegram-bot-btn, .chat-gpt-btn {
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .telegram-bot-btn {
+            background-color: #0088cc;
+        }
+
+    .right-sidebar {
+        width: 300px;
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-left: 3px solid #bdc3c7;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: auto; /* Позволяет прокручивать содержимое */
+        max-height: calc(100vh - 40px); /* Устанавливает максимальную высоту */
+    }
+
+
+        .telegram-bot-btn:hover {
+            background-color: #0077aa;
+        }
+
+        .chat-gpt-btn {
+            background-color: #27ae60;
+        }
+
+        .chat-gpt-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        h1, h3 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-panel">
+    <div class="logo">DIAR Support</div>
+    
+    <div class="dropdown">
+        <a href="#" class="top-btn">Пройти обучение</a>
+        <div class="dropdown-content">
+            <a href="#" onclick="showTraining(1)">Пройти обучение - Работа с программой DIAR</a>
+            <a href="#" onclick="showTraining(2)">Пройти обучение - Операторам</a>
+            <a href="#" onclick="showTraining(3)">Пройти обучение - Отгрузка</a>
+            <a href="#" onclick="showTraining(4)">Пройти обучение - Техническому персоналу</a>
+            <a href="#" onclick="showTraining(5)">Пройти обучение - Работа на сайте Честного Знака</a>
+            <a href="#" onclick="showTraining(6)">Пройти обучение - Ремонт комплектующих оборудования Маркировки</a>
+        </div>
+    </div>
+    
+    <div class="dropdown">
+        <a href="#" class="top-btn">Посмотреть видеоинструкции</a>
+        <div class="dropdown-content">
+            <a href="#" onclick="showVideo1()">Видео 1</a>
+            <a href="#" onclick="showVideo2()">Видео 2</a>
+            <a href="#" onclick="showVideo3()">Видео 3</a>
+            <a href="#" onclick="showVideo4()">Видео 4</a>
+            <a href="#" onclick="showVideo5()">Видео 5</a>
+        </div>
+    </div>
+
+    <a href="#" class="top-btn" onclick="startTest()">Закрепим обучение и пройдем тест</a>
+</div>
+
+<div class="container">
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="menu-item">
+                 <p>Честный знак.Техническая поддержка от DAIR</p>
+            </div>
+
+            <div class="menu-item" onclick="toggleSubmenu('submenu1')">Работа в программе DIAR</div>
+            <div class="submenu" id="submenu1">
+                <div class="submenu-item"><a onclick="showInfo1()">Запуск программы-видеоинтсрукция</a></div>
+                <div class="submenu-item"><a onclick="showInfo2()">Текстовая инструкция</a></div>
+                <div class="submenu-item"><a onclick="showInfo2()">Часто задаваемые вопросы</a></div>
+                <div class="submenu-item"><a onclick="showInfo23()">Полная инструкция</a></div>
+      
+            </div>
+
+            <div class="menu-item" onclick="toggleSubmenu('submenu2')">Операторам на произодстве</div>
+            <div class="submenu" id="submenu2">
+                
+                   <div class="submenu-item"><a onclick="showInfo5()">Оператор Сериализации</a></div>
+                   <div class="submenu-item"><a onclick="showInfo3()">Оператор Агрегации</a></div>
+                  
+              </div>
+          
+
+        
+           <div class="menu-item" onclick="toggleSubmenu('submenu4')">Для Технического персонала</div>
+          <div class="submenu" id="submenu4">
+            <div class="submenu-item"><a onclick="showInfo9()">Часто задаваемые вопросы</a></div>
+            <div class="submenu-item"><a onclick="showInfo11()">Инструкция к аппликатору</a></div>
+            <div class="submenu-item"><a onclick="showInfo12()">Инструкция к шкафу управления</a></div>
+            <div class="submenu-item"><a onclick="showInfo12()">Видеоинструкции</a></div>
+          </div>
+
+
+          <div class="menu-item" onclick="toggleSubmenu('submenu5')">Работа на сайте Честного Знака</div>
+          <div class="submenu" id="submenu5">
+             <div class="submenu-item"><a onclick="showInfo()">Часто задаваемые вопросы</a></div>
+             <div class="submenu-item"><a onclick="showInfo44()">Вход в личный кабинет Честного Знака</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Запрос счета на оплату кодов маркировки</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Проверка карточек товара</a></div>
+            <div class="submenu-item"><a onclick="showInfo()">Вывод из оборота по причине Бой-Брак на БКК</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Вывод из оборота по причине Бой во время перевозки</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Вывод из оборота для своих нужд</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Вывод из оборота по причине Бой во время перевозки</a></div>
+             <div class="submenu-item"><a onclick="showInfo()">Как сделать аналитику продаж нашей продукции по регионам</a></div>
+            <div class="submenu-item"><a onclick="showInfo()">Видеоинтсрукции</a></div>
+        </div>
+
+         <div class="menu-item" onclick="toggleSubmenu('submenu6')">Вопросы к ИТ Отделу</div>
+        <div class="submenu" id="submenu6">
+              <div class="submenu-item"><a onclick="showInfo()">Написать в ИТ - Отдел</a></div>
+       </div>
+
+
+
+            </div>
+
+
+        <!-- Основное содержимое -->
+       <div class="content" id="content">
+         <a href="https://ibb.co/9vz19fz"><img src="https://i.ibb.co/b3qCgyq/7.png" alt="7" border="0"></a>
+        <p>Данный сервис создан для помощи сотрудникам в процессах работы с маркировкой Честный Знак</p>
+        <p>Сервис описывает процессы каждого отдела и помогает дать ответы на вопросы в работе.</p>
+        <p>Сервис поможет адаптировать нового сотрудника к работе с функционалом Честного Знака в короткие сроки..</p>
+    </div>
+
+        <!-- Правая панель -->
+        <div class="right-sidebar">
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Поиск..." onkeyup="searchFunction()">
+            </div>
+
+            <div class="feedback-section">
+                <h3>Обратная связь</h3>
+                <textarea id="feedback" placeholder="Ваше сообщение..."></textarea>
+                <button onclick="submitFeedback()">Отправить</button>
+            </div>
+
+            <button class="telegram-bot-btn" onclick="openTelegramBot()">Telegram бот поддержки</button>
+            <button class="chat-gpt-btn" onclick="openChatGPT()">Открыть ChatGPT</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSubmenu(id) {
+        const submenu = document.getElementById(id);
+        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+    }
+
+ function showInfo1() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+            <h1>Видеоинструкция - Работа в программе DIAR</h1>
+<video width="400" height="300" controls> <source src="static/2.mp4" type="video/mp4">
+
+        `;
+  }
+function showInfo2() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+<a href="https://ibb.co/QphHXGr"><img src="https://i.ibb.co/QphHXGr/1-2-page-0006.jpg" alt="1-2-page-0006" border="0"></a> <a href="https://ibb.co/wQsgzgS"><img src="https://i.ibb.co/wQsgzgS/1-2-page-0007.jpg" alt="1-2-page-0007" border="0"></a> <a href="https://ibb.co/9bM1P0t"><img src="https://i.ibb.co/9bM1P0t/1-2-page-0008.jpg" alt="1-2-page-0008" border="0"></a> <a href="https://ibb.co/rG8kBST"><img src="https://i.ibb.co/rG8kBST/1-2-page-0009.jpg" alt="1-2-page-0009" border="0"></a> <a href="https://ibb.co/9ppLzCd"><img src="https://i.ibb.co/9ppLzCd/1-2-page-0010.jpg" alt="1-2-page-0010" border="0"></a> <a href="https://ibb.co/yg1G2RT"><img src="https://i.ibb.co/yg1G2RT/1-2-page-0011.jpg" alt="1-2-page-0011" border="0"></a> <a href="https://ibb.co/ZHLQpVc"><img src="https://i.ibb.co/ZHLQpVc/1-2-page-0012.jpg" alt="1-2-page-0012" border="0"></a> <a href="https://ibb.co/8m9xnND"><img src="https://i.ibb.co/8m9xnND/1-2-page-0013.jpg" alt="1-2-page-0013" border="0"></a> <a href="https://ibb.co/2ywc9kM"><img src="https://i.ibb.co/2ywc9kM/1-2-page-0014.jpg" alt="1-2-page-0014" border="0"></a> <a href="https://ibb.co/gTBbT21"><img src="https://i.ibb.co/gTBbT21/1-2-page-0015.jpg" alt="1-2-page-0015" border="0"></a> <a href="https://ibb.co/mqKR1yL"><img src="https://i.ibb.co/mqKR1yL/1-2-page-0016.jpg" alt="1-2-page-0016" border="0"></a> <a href="https://ibb.co/w6jBL2n"><img src="https://i.ibb.co/w6jBL2n/1-2-page-0017.jpg" alt="1-2-page-0017" border="0"></a>
+        `;
+  }
+
+
+function showInfo23() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+<a href="https://ibb.co/QphHXGr"><img src="https://i.ibb.co/KbBsmHF/1-2-page-0006.jpg" alt="1-2-page-0006" border="0"></a>
+<a href="https://ibb.co/wQsgzgS"><img src="https://i.ibb.co/T0L2g24/1-2-page-0007.jpg" alt="1-2-page-0007" border="0"></a>
+<a href="https://ibb.co/9bM1P0t"><img src="https://i.ibb.co/bsfCtVJ/1-2-page-0008.jpg" alt="1-2-page-0008" border="0"></a>
+<a href="https://ibb.co/rG8kBST"><img src="https://i.ibb.co/SXYNk8W/1-2-page-0009.jpg" alt="1-2-page-0009" border="0"></a>
+<a href="https://ibb.co/9ppLzCd"><img src="https://i.ibb.co/8mmpTSQ/1-2-page-0010.jpg" alt="1-2-page-0010" border="0"></a>
+<a href="https://ibb.co/yg1G2RT"><img src="https://i.ibb.co/p48GqPD/1-2-page-0011.jpg" alt="1-2-page-0011" border="0"></a>
+<a href="https://ibb.co/ZHLQpVc"><img src="https://i.ibb.co/WDxr46B/1-2-page-0012.jpg" alt="1-2-page-0012" border="0"></a>
+<a href="https://ibb.co/8m9xnND"><img src="https://i.ibb.co/mR4yrbC/1-2-page-0013.jpg" alt="1-2-page-0013" border="0"></a>
+<a href="https://ibb.co/2ywc9kM"><img src="https://i.ibb.co/37wS3CF/1-2-page-0014.jpg" alt="1-2-page-0014" border="0"></a>
+<a href="https://ibb.co/gTBbT21"><img src="https://i.ibb.co/2tf0t92/1-2-page-0015.jpg" alt="1-2-page-0015" border="0"></a>
+<a href="https://ibb.co/mqKR1yL"><img src="https://i.ibb.co/d2vf1pd/1-2-page-0016.jpg" alt="1-2-page-0016" border="0"></a>
+<a href="https://ibb.co/w6jBL2n"><img src="https://i.ibb.co/6sLrZqK/1-2-page-0017.jpg" alt="1-2-page-0017" border="0"></a>
+        `;
+  }
+
+
+
+
+
+   function showInfo5() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/k0B1H9n/555.jpg" alt="555" border="0"></a>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+
+
+
+
+            <h1>Формирование текста Этикетки</h1>
+           <p>1. Формирование текста этикетки </p>
+</p>1.1. Отдел контроля качества: </p>
+</p>•	Формирует текст для этикетки в текстовом документе, включая состав продукта и другие необходимые данные. </p>
+</p>•	После создания текста, сотрудник отдела загружает файл с текстом в чат GPT (ваш помощник для проверки) для проверки на наличие орфографических и пунктуационных ошибок. </p>
+</p>1.2. Чат GPT (помощник):</p>
+</p>•	Тщательно проверяет текст на орфографические и пунктуационные ошибки, а также на логичность и целостность содержания. </p>
+</p>•	После проверки текст возвращается в отдел контроля качества для дальнейших действий.</p>
+<video width="400" height="300" controls> <source src="static/1.mp4" type="video/mp4">
+        `;
+  }
+
+
+
+  function showInfo20() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/SJMQD5b"><img src="https://i.ibb.co/9G1wmc6/page-0001.jpg" alt="page-0001" border="0"></a>
+<a href="https://ibb.co/1fBgKy6"><img src="https://i.ibb.co/WW7hF8t/page-0002.jpg" alt="page-0002" border="0"></a>
+<a href="https://ibb.co/Rbs4MHV"><img src="https://i.ibb.co/xLB8c5R/page-0003.jpg" alt="page-0003" border="0"></a>
+<a href="https://ibb.co/q5CWb5H"><img src="https://i.ibb.co/bJF2pJ4/page-0004.jpg" alt="page-0004" border="0"></a>
+<a href="https://ibb.co/r2wZKyj"><img src="https://i.ibb.co/3mC05h3/page-0005.jpg" alt="page-0005" border="0"></a>
+<a href="https://ibb.co/j5q2fwG"><img src="https://i.ibb.co/3sVqdFW/page-0006.jpg" alt="page-0006" border="0"></a>
+<a href="https://ibb.co/b64XQSn"><img src="https://i.ibb.co/gr0Jm5C/page-0007.jpg" alt="page-0007" border="0"></a>
+<a href="https://ibb.co/d7djPHD"><img src="https://i.ibb.co/9GFcbdW/page-0008.jpg" alt="page-0008" border="0"></a>
+<a href="https://ibb.co/9bWpxTG"><img src="https://i.ibb.co/dPDfN27/page-0009.jpg" alt="page-0009" border="0"></a>
+<a href="https://ibb.co/f0XbFSm"><img src="https://i.ibb.co/ThwZ2Tz/page-0010.jpg" alt="page-0010" border="0"></a>
+<a href="https://ibb.co/6rSYPBH"><img src="https://i.ibb.co/QpV9NdP/page-0011.jpg" alt="page-0011" border="0"></a>
+<a href="https://ibb.co/Chj9r7C"><img src="https://i.ibb.co/723p9WM/page-0012.jpg" alt="page-0012" border="0"></a>
+<a href="https://ibb.co/cygHSTF"><img src="https://i.ibb.co/GdxL4P2/page-0013.jpg" alt="page-0013" border="0"></a>
+<a href="https://ibb.co/f0j0yyC"><img src="https://i.ibb.co/j4n4QQL/page-0014.jpg" alt="page-0014" border="0"></a>
+<a href="https://ibb.co/7SNT00t"><img src="https://i.ibb.co/0nVWzzy/page-0015.jpg" alt="page-0015" border="0"></a>
+<a href="https://ibb.co/6vKmQ4y"><img src="https://i.ibb.co/JxYKZzc/page-0016.jpg" alt="page-0016" border="0"></a>
+<a href="https://ibb.co/JBcBv5B"><img src="https://i.ibb.co/Bzfzyqz/page-0017.jpg" alt="page-0017" border="0"></a>
+<a href="https://ibb.co/TchMLs8"><img src="https://i.ibb.co/MnNk6mV/page-0018.jpg" alt="page-0018" border="0"></a>
+<video width="400" height="300" controls> <source src="static/1.mp4" type="video/mp4">
+        `;
+  }
+
+
+
+
+ function showInfo6() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/wJdgT47/77.jpg" alt="77" border="0"></a>
+
+
+
+
+            <h1>Проверка перевода на соответсвие</h1>
+           <p>1. Работа с файлом от переводчика</p>
+</p>1.1. Отдел Снабжения: </p>
+</p>•	В чат GPT загружаем наш файл шаблон(Шаблон этот тот файл который Вы отправили переводчику) и загружаем файл полученный от переводчика(с переводом нашего файла).</p>
+</p>•	Пишем в чат "Проверь на ошибки и перевод"и нажимаем отправить.После проверки текст возвращается в отдел контроля качества для дальнейших действий.</p>
+</p>•   Далее смотрим ответ по анализу вдух документов от Чата GPT.</p>
+</p>•   Хотел упростить для Вас процесс по максимуму.Ниже можете посмотреть видео инструкцию этого процесса.</p>
+<video width="400" height="300" controls> <source src="static/2.mp4" type="video/mp4">
+        `;
+  }
+
+  function showInfo44() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/1K4Rt6v"><img src="https://i.ibb.co/S0ZV4rs/2-1.jpg" alt="2-1" border="0"></a>
+<a href="https://ibb.co/3BwRvcG"><img src="https://i.ibb.co/hDkYcVh/2-2.jpg" alt="2-2" border="0"></a>
+<a href="https://ibb.co/61zvj0g"><img src="https://i.ibb.co/fnf8jd4/2-3.jpg" alt="2-3" border="0"></a>
+<a href="https://ibb.co/MhhvdDJ"><img src="https://i.ibb.co/W33hCWR/2-4.jpg" alt="2-4" border="0"></a>
+<a href="https://ibb.co/wg8rzH1"><img src="https://i.ibb.co/vqfvj58/2-5.jpg" alt="2-5" border="0"></a>
+
+
+
+       
+<video width="400" height="300" controls> <source src="static/1.mp4" type="video/mp4">
+        `;
+  }
+
+
+  function showInfo3() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/G98gWqf/6666.jpg" alt="6666" border="0"></a>
+            <h1>Соответсвие Знаков</h1>
+          </p>1.3 В  Чат GPT загружаете файл со знаками и пишите в чат "Проверь знаки на соответстиве текста этикетки".</p>
+</p> Если все знаки соответствуют,значит текст для этикетки соответствует знакам.</p>
+</p>1.4. Вы проверили два файла.1 файл -  текст на ошибки и 2 файл - соответствие текста к обязательным атрибутам.</p>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+<p><input name="3" type="button" value="Открыть текстовую инструкцию с картинками" /></p>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+<p><span style="font-size:12px"><span style="background-color:#3498db"><input name="2" type="button" value="Открыть Видео Инструкцию" /></span></span></p>
+        `;
+  }
+
+ function showInfo7() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/XpVfJVP/7777.jpg" alt="7777" border="0"></a> <a href="https://imgbb.com/"><img src="https://i.ibb.co/Fx1v5B7/77777.jpg" alt="77777" border="0"></a>
+
+
+
+
+            <h1>Проверка штрих кода на соответствие продукта на этикетки.</h1>
+           <p>1У Вас есть файл excel с базой данных штрих кодов,в котором имееется весь список штрих-кодов на нашу продукцию,он нам будет  необходим для работы с Чатом GPT.</p>
+</p>Отдел Снабжения: </p>
+</p>•	1.Загружаем два файла в Чат GP.</p>
+</p>1 файл -  макет этикетки - полученной от Дизайнера.</p>
+</p>2 файл - excel документ с базой данный штрих-кодов.</p>
+</p>•	2.Пишем в чат: На выбор два вариата. </p>
+</p>•   Вариант №1 - Если мы хотим проверить только соотвествие штрих-кода на макете с нашей базой данных. </p>
+</p>В Чат GPT пишем "Проверь  штрих-код на этикетке с моей базой штрих-кодов в excel.Соответсвует ли штрих-код на этикетке тексту?" и нажимаем отправить.</p>
+</p>•   Вариант №2 - Если мы хотим провести полную проверку макета.</p>
+ </p>В Чат GPT пишем "Проверь эту этикетку на ошибки и соответствие (название, состав, ГОСТ ). И проверь Посмотри, какие знаки есть на этикетке, и проверь, соответствуют ли они продукту и требованиям.Проверка штрих-кода на этикетке" и нажимаем отправить.</p>
+</p>•   3.Вам придет ответ - прошел ли макет проверку.</p>
+</p>Если не прошел,тогда необходимо исправить выявленные ошибки и повторить проверку пункт№1 и пункт№2.</p>
+</p>•   4.Когда вы произвели проверку и уверены,что вся информация соответствует нашим данным перед отправкой Дизайнеру,тогда сообщите в отдел Маркетинга,что макет верный.</p>
+</p>•   5.После согласования Отделам ОКК,Отделом Снабжения и Отделом Маркетинга макета этикетки,полученной от Дизайнера. Макет отправляется в Типографию.</p>
+</p>•   6.Далее вы включитесь в процесс проверки этикетки на этапе проверки макета от Типографии.</p>
+<video width="400" height="300" controls> <source src="static/2.mp4" type="video/mp4">
+        `;
+  }
+
+
+
+
+
+ function showInfo8() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+
+
+
+            <h1>Отправка в Отдел Марктинга.</h1>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Rcg7G6h/Marketing.jpg" alt="Marketing" border="0"></a>
+
+</p>•   1.Когда вы произвели проверку и уверены,что вся информация соответствует нашим данным перед отправкой Дизайнеру,тогда сообщите в отдел Маркетинга,что макет верный.</p>
+</p>•   2.После согласования Отделам ОКК,Отделом Снабжения и Отделом Маркетинга макета этикетки,полученной от Дизайнера. Макет отправляется в Типографию.</p>
+</p>•   3.Далее вы включитесь в процесс проверки этикетки на этапе проверки макета от Типографии.</p>
+
+
+        `;
+  }
+
+function showInfo9() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Rcg7G6h/Marketing.jpg" alt="Marketing" border="0"></a>
+
+            <h1>Отдел Маркетинга</h1>
+          </p>В отдел маркетинга приходят проверенные данные по этикетки от отдела контроля качества и отдела снабжения.</p>
+</p> Отдел марктетинга отправляет данные Дизайнеру для создания макета этикетки.</p>
+</p>Задача маркетинга проверить цвета этикетки после работы Дизайнера  и наличие элементов на макете и их порядок и расположение.</p>
+</p>Далее макет отправляют для проверки в отдел контроля качества для проверки текста на ошибки и соответствие знаков.</p>
+</p>Макет отправляют  в отдел Снабжения для проверки перевода,проверки штрих-кода,QR-кода.</p>
+</p>Как макет будет проверен всеми отделами учавтсвующими в процессах формирования этикетки,Макет согласуется и отправляется в Типографию.</p>
+
+        `;
+  }
+
+
+function showInfo11() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/KqKfj5L"><img src="https://i.ibb.co/fpDyYXn/1234.png" alt="1234" border="0"></a>
+
+
+</p>Как макет будет проверен всеми отделами учавтсвующими в процессах формирования этикетки,Макет согласуется и отправляется в Типографию.</p>
+
+        `;
+  }
+
+function showInfo12() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/fqhjJHD"><img src="https://i.ibb.co/MZYFd7B/12345.jpg" alt="12345" border="0"></a>
+
+</p>Отправляем наш макет в типографию.</p>
+
+        `;
+  }
+
+
+
+
+function showInfo4() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/1bN5Cfz/edo1.jpg" alt="edo1" border="0"></a>
+            <h1>Отправка в Отдел снабжения</h1>
+          </p>1.Когда вы произвели проверку и уверены,что вся информация соответствует для дальнейшего формирования этикетки,тогда отправляете  проверенные два файла в отдел снабжения для дальнейшей работы с этикеткой..</p>
+</p>2.После создания макета этикетки Дизайнером - Вы снова включитесь в процесс работы с этикеткой,чтобы проверить работу Дизайнера на предмет возможного изменения текста или знаков в процессе создания макета Дизайнером.</p>
+
+
+
+
+        `;
+  }
+
+
+    function searchFunction() {
+        const input = document.getElementById('search');
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll('.menu-item, .submenu-item');
+        items.forEach(item => {
+            const text = item.innerText.toLowerCase();
+            item.style.display = text.includes(filter) ? '' : 'none';
+        });
+    }
+
+    function showTraining(num) {
+        document.getElementById('content').innerHTML = `<h2>Обучение ${num}</h2><p>Описание для обучения ${num}...</p>`;
+    }
+
+    function showVideo1() {
+        document.getElementById('content').innerHTML = "<h2>Видео 1</h2><p>Описание видео 1...</p>";
+    }
+
+    function showVideo2() {
+        document.getElementById('content').innerHTML = "<h2>Видео 2</h2><p>Описание видео 2...</p>";
+    }
+
+    function showVideo3() {
+        document.getElementById('content').innerHTML = "<h2>Видео 3</h2><p>Описание видео 3...</p>";
+    }
+
+    function showVideo4() {
+        document.getElementById('content').innerHTML = "<h2>Видео 4</h2><p>Описание видео 4...</p>";
+    }
+
+    function showVideo5() {
+        document.getElementById('content').innerHTML = "<h2>Видео 5</h2><p>Описание видео 5...</p>";
+    }
+
+    function submitFeedback() {
+        const feedback = document.getElementById('feedback').value;
+        alert('Спасибо за ваше сообщение: ' + feedback);
+        document.getElementById('feedback').value = ''; // Очистка поля
+    }
+
+    function openTelegramBot() {
+        alert('Перейти в Telegram бот...');
+    }
+
+    function openChatGPT() {
+        document.getElementById('content').innerHTML = "<h2>Чат GPT</h2><p>Здесь вы можете задать вопросы и получить ответы...</p>";
+    }
+
+    function startTest() {
+        document.getElementById('content').innerHTML = "<h2>Тестирование знаний</h2><p>Закрепим обучение и пройдем тест...</p>";
+    }
+</script>
+
+</body>
+</html>

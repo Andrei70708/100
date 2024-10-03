@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка Этикеток</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>АО Пищепром</h1>
+            <p>Категории</p>
+            <div class="menu-item">
+                <a href="#" onclick="showContent('content1')">Этапы формирования</a>
+            </div>
+            <div class="menu-item">
+                <a href="#" onclick="showContent('content2')">Текстовая инструкция</a>
+            </div>
+            <div class="menu-item">
+                <a href="#" onclick="showContent('content3')">Формирование текста</a>
+            </div>
+        </div>
+        <div class="content">
+            <div id="content1" class="content-section">
+                <h1>Этапы формирования по отделам</h1>
+                <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="Этапы формирования">
+                <p>Отдел контроля качества: начальное формирование текста для этикетки, проверка на ошибки, проверка на знаки.</p>
+            </div>
+
+            <div id="content2" class="content-section hidden">
+                <h1>Полная текстовая инструкция</h1>
+                <p>Формирование текста этикетки и проверка на ошибки, а также последующий процесс оформления.</p>
+            </div>
+
+            <div id="content3" class="content-section hidden">
+                <h1>Формирование текста этикетки</h1>
+                <img src="{{ url_for('static', filename='images/555.jpg') }}" alt="Формирование текста">
+                <p>Процесс начинается с отдела маркетинга, после чего проходит проверку в отделе качества.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                section.classList.add('hidden');
+            });
+            document.getElementById(contentId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

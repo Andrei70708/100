@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример меню с подменю</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #444;
+            margin-bottom: 5px;
+        }
+
+        .menu-item:hover {
+            background-color: #555;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .submenu-item {
+            padding: 5px 0;
+        }
+
+        .submenu-item a {
+            color: #ccc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .submenu-item a:hover {
+            color: white;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+
+      <div class="menu-item">
+         <h1>DIAR</h1>
+        <p>Оператор агрегации</p>
+         <p>Техническая поддержка</p>
+        </div>
+
+<div class="menu-item" onclick="toggleSubmenu('submenu1')">Инструкция</div>
+    <div class="submenu" id="submenu1">
+      <div class="submenu-item"><a onclick="showInfo1()">Инструкция ПО DiAR Mark - РМС Оператор v1.2.1.247 </a></div>
+      </div>
+
+       <div class="menu-item" onclick="toggleSubmenu('submenu2')">Часто задавемые вопросы</div>
+        <div class="submenu" id="submenu2">
+            <div class="submenu-item"><a onclick="showInfo5()">Порядок работы агрегации?</a></div>
+            <div class="submenu-item"><a onclick="showInfo3()">Работа с принтером упаковки</a></div>
+            <div class="submenu-item"><a onclick="showInfo4()">Работа с принтером паллета</a></div>
+            <div class="submenu-item"><a onclick="showInfo4()">Не работает кнопка педаль?</a></div>
+           <div class="submenu-item"><a onclick="showInfo4()">Не работает камера тех.зрения?</a></div>
+           <div class="submenu-item"><a onclick="showInfo4()">Не работает сканер?</a></div>
+           <div class="submenu-item"><a onclick="showInfo4()">Не работает принтер</a></div>
+          
+          
+         </div>
+
+        <div class="menu-item" onclick="toggleSubmenu('submenu3')">Проверка оборудования перед запуском</div>
+        <div class="submenu" id="submenu3">
+            <div class="submenu-item"><a onclick="showInfo6()">Ошибки на АРМ</a></div>
+            <div class="submenu-item"><a onclick="showInfo7()">Ошибки на РМС</a></div>
+            <div class="submenu-item"><a onclick="showInfo8()">Видеоинструкции</a></div>
+           <div class="submenu-item"><a onclick="showInfo8()">Монтаж оборудования - надо?)</a></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleSubmenu('submenu4')">Написать в техническую поддержку</div>
+        <div class="submenu" id="submenu4">
+            <div class="submenu-item"><a onclick="showInfo9()">Заполнить Заявку на тех.обсуживание</a></div>
+            <div class="submenu-item"><a onclick="showInfo11()">Перейти в телеграмм бот тех.поддержки</a></div>
+            <div class="submenu-item"><a onclick="showInfo12()">Отправить запрос в тех.поддержку</a></div>
+        </div>
+
+
+  
+</div>
+
+
+<div class="content" id="content">
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/yWpyYpj/Diar1.jpg" alt="Diar1" border="0"></a>
+        <h1> DIAR-Mark - Техническая поддержка операторам Агрегации </h1>
+<a href="https://ibb.co/Nxd9mw8"><img src="https://i.ibb.co/hsJBZpP/tech-support.jpg" alt="tech-support" border="0"></a>
+
+
+    </div>
+</div>
+
+<script>
+    function toggleSubmenu(submenuId) {
+        const submenu = document.getElementById(submenuId);
+        if (submenu.style.display === "block") {
+            submenu.style.display = "none";
+        } else {
+            submenu.style.display = "block";
+        }
+    }
+    function showInfo1() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/BsqmWH4"><img src="https://i.ibb.co/0Jhk4pB/Di-AR-Mark-v1-2-1-247-2-page-0002.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0002" border="0"></a>
+<a href="https://ibb.co/Btq9Vgr"><img src="https://i.ibb.co/56BPW5n/Di-AR-Mark-v1-2-1-247-2-page-0003.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0003" border="0"></a>
+<a href="https://ibb.co/FhgwMLd"><img src="https://i.ibb.co/tH8stT1/Di-AR-Mark-v1-2-1-247-2-page-0004.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0004" border="0"></a>
+<a href="https://ibb.co/yQZJSd7"><img src="https://i.ibb.co/JsGPQmg/Di-AR-Mark-v1-2-1-247-2-page-0005.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0005" border="0"></a>
+<a href="https://ibb.co/9pjtPZK"><img src="https://i.ibb.co/nwSCpPd/Di-AR-Mark-v1-2-1-247-2-page-0006.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0006" border="0"></a>
+<a href="https://ibb.co/71DLWk3"><img src="https://i.ibb.co/tJ6FsL0/Di-AR-Mark-v1-2-1-247-2-page-0007.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0007" border="0"></a>
+<a href="https://ibb.co/3CGv3By"><img src="https://i.ibb.co/yQGp9Wn/Di-AR-Mark-v1-2-1-247-2-page-0008.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0008" border="0"></a>
+<a href="https://ibb.co/XJkRymq"><img src="https://i.ibb.co/vzvns2S/Di-AR-Mark-v1-2-1-247-2-page-0009.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0009" border="0"></a>
+<a href="https://ibb.co/tqS0PgW"><img src="https://i.ibb.co/T4ZQq6F/Di-AR-Mark-v1-2-1-247-2-page-0010.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0010" border="0"></a>
+<a href="https://ibb.co/VB8SbRJ"><img src="https://i.ibb.co/cTdFR0k/Di-AR-Mark-v1-2-1-247-2-page-0011.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0011" border="0"></a>
+<a href="https://ibb.co/xSJMJ5K"><img src="https://i.ibb.co/rG4Z4yK/Di-AR-Mark-v1-2-1-247-2-page-0012.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0012" border="0"></a>
+<a href="https://ibb.co/k40KsSQ"><img src="https://i.ibb.co/5rvTgRB/Di-AR-Mark-v1-2-1-247-2-page-0013.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0013" border="0"></a>
+<a href="https://ibb.co/s6nTHbQ"><img src="https://i.ibb.co/4YzbdKM/Di-AR-Mark-v1-2-1-247-2-page-0014.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0014" border="0"></a>
+<a href="https://ibb.co/p4vYfyd"><img src="https://i.ibb.co/2c7GvNd/Di-AR-Mark-v1-2-1-247-2-page-0015.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0015" border="0"></a>
+<a href="https://ibb.co/4dpPZqj"><img src="https://i.ibb.co/M67MDvR/Di-AR-Mark-v1-2-1-247-2-page-0016.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0016" border="0"></a>
+<a href="https://ibb.co/mcbN8fR"><img src="https://i.ibb.co/CHmP2Rw/Di-AR-Mark-v1-2-1-247-2-page-0017.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0017" border="0"></a>
+<a href="https://ibb.co/TPbRzh2"><img src="https://i.ibb.co/zP7bKfx/Di-AR-Mark-v1-2-1-247-2-page-0018.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0018" border="0"></a>
+<a href="https://ibb.co/hddTBfd"><img src="https://i.ibb.co/B66YyN6/Di-AR-Mark-v1-2-1-247-2-page-0019.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0019" border="0"></a>
+<a href="https://ibb.co/BtMh3k3"><img src="https://i.ibb.co/nbJXmpm/Di-AR-Mark-v1-2-1-247-2-page-0020.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0020" border="0"></a>
+<a href="https://ibb.co/LkqTVfT"><img src="https://i.ibb.co/Wxdrm1r/Di-AR-Mark-v1-2-1-247-2-page-0021.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0021" border="0"></a>
+<a href="https://ibb.co/qCdDWcQ"><img src="https://i.ibb.co/T1kwb73/Di-AR-Mark-v1-2-1-247-2-page-0022.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0022" border="0"></a>
+<a href="https://ibb.co/wBWyQn7"><img src="https://i.ibb.co/Gn27MZ9/Di-AR-Mark-v1-2-1-247-2-page-0023.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0023" border="0"></a>
+<a href="https://ibb.co/jWks3XY"><img src="https://i.ibb.co/8dgtPZw/Di-AR-Mark-v1-2-1-247-2-page-0024.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0024" border="0"></a>
+<a href="https://ibb.co/jGvpL12"><img src="https://i.ibb.co/GkvhVbL/Di-AR-Mark-v1-2-1-247-2-page-0025.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0025" border="0"></a>
+<a href="https://ibb.co/3Sb6Mjt"><img src="https://i.ibb.co/ss4x6NL/Di-AR-Mark-v1-2-1-247-2-page-0026.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0026" border="0"></a>
+<a href="https://ibb.co/D9Jj4Hp"><img src="https://i.ibb.co/R3FJ2ky/Di-AR-Mark-v1-2-1-247-2-page-0027.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0027" border="0"></a>
+<a href="https://ibb.co/3MnR4QY"><img src="https://i.ibb.co/X3qYjMk/Di-AR-Mark-v1-2-1-247-2-page-0028.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0028" border="0"></a>
+<a href="https://ibb.co/rtdXB5Y"><img src="https://i.ibb.co/hMYTG2b/Di-AR-Mark-v1-2-1-247-2-page-0029.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0029" border="0"></a>
+<a href="https://ibb.co/1vHg94v"><img src="https://i.ibb.co/Bz8pgYz/Di-AR-Mark-v1-2-1-247-2-page-0030.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0030" border="0"></a>
+<a href="https://ibb.co/GHnJ7Pg"><img src="https://i.ibb.co/g4m7ygs/Di-AR-Mark-v1-2-1-247-2-page-0031.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0031" border="0"></a>
+<a href="https://ibb.co/j6YXyKZ"><img src="https://i.ibb.co/6nSCHhJ/Di-AR-Mark-v1-2-1-247-2-page-0032.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0032" border="0"></a>
+<a href="https://ibb.co/zNgvckD"><img src="https://i.ibb.co/st4YSBz/Di-AR-Mark-v1-2-1-247-2-page-0033.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0033" border="0"></a>
+<a href="https://ibb.co/pf0JCYj"><img src="https://i.ibb.co/Cb1hxRK/Di-AR-Mark-v1-2-1-247-2-page-0034.jpg" alt="Di-AR-Mark-v1-2-1-247-2-page-0034" border="0"></a>
+
+        `;
+  }
+  function showInfo2() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/KqYC9qV"><img src="https://i.ibb.co/BZm8gZT/Di-AR-Mark-v1-2-1-100-2-page-0002.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0002" border="0"></a>
+<a href="https://ibb.co/vdHx5xP"><img src="https://i.ibb.co/5j6WDW8/Di-AR-Mark-v1-2-1-100-2-page-0003.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0003" border="0"></a>
+<a href="https://ibb.co/YDRjSnx"><img src="https://i.ibb.co/TKvhGjs/Di-AR-Mark-v1-2-1-100-2-page-0004.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0004" border="0"></a>
+<a href="https://ibb.co/PtXbxgQ"><img src="https://i.ibb.co/JC6bnHQ/Di-AR-Mark-v1-2-1-100-2-page-0005.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0005" border="0"></a>
+<a href="https://ibb.co/nz637Bw"><img src="https://i.ibb.co/m6bv90R/Di-AR-Mark-v1-2-1-100-2-page-0006.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0006" border="0"></a>
+<a href="https://ibb.co/0jDTdFr"><img src="https://i.ibb.co/HDF6kxq/Di-AR-Mark-v1-2-1-100-2-page-0007.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0007" border="0"></a>
+<a href="https://ibb.co/DGD054P"><img src="https://i.ibb.co/B4V0qLH/Di-AR-Mark-v1-2-1-100-2-page-0008.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0008" border="0"></a>
+<a href="https://ibb.co/Tb9W3rz"><img src="https://i.ibb.co/61jXCN6/Di-AR-Mark-v1-2-1-100-2-page-0009.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0009" border="0"></a>
+<a href="https://ibb.co/hKNThkN"><img src="https://i.ibb.co/MRHJWbH/Di-AR-Mark-v1-2-1-100-2-page-0010.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0010" border="0"></a>
+<a href="https://ibb.co/2Zk6Dgf"><img src="https://i.ibb.co/QDKc2r1/Di-AR-Mark-v1-2-1-100-2-page-0011.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0011" border="0"></a>
+<a href="https://ibb.co/cgWn4Vz"><img src="https://i.ibb.co/0D0bHvP/Di-AR-Mark-v1-2-1-100-2-page-0012.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0012" border="0"></a>
+<a href="https://ibb.co/6R4Rygt"><img src="https://i.ibb.co/wNKNdMQ/Di-AR-Mark-v1-2-1-100-2-page-0013.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0013" border="0"></a>
+<a href="https://ibb.co/v4rs7Zr"><img src="https://i.ibb.co/whbJ9Mb/Di-AR-Mark-v1-2-1-100-2-page-0014.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0014" border="0"></a>
+<a href="https://ibb.co/ZSxSJqf"><img src="https://i.ibb.co/68F8Zjy/Di-AR-Mark-v1-2-1-100-2-page-0015.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0015" border="0"></a>
+<a href="https://ibb.co/30pTx5N"><img src="https://i.ibb.co/WckHrNy/Di-AR-Mark-v1-2-1-100-2-page-0016.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0016" border="0"></a>
+<a href="https://ibb.co/pJ99MJF"><img src="https://i.ibb.co/0hdd6hb/Di-AR-Mark-v1-2-1-100-2-page-0017.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0017" border="0"></a>
+<a href="https://ibb.co/wRD5Zp3"><img src="https://i.ibb.co/f2mjVrB/Di-AR-Mark-v1-2-1-100-2-page-0018.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0018" border="0"></a>
+<a href="https://ibb.co/1fwwxVX"><img src="https://i.ibb.co/DDSSnXM/Di-AR-Mark-v1-2-1-100-2-page-0019.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0019" border="0"></a>
+<a href="https://ibb.co/MVR0ZHG"><img src="https://i.ibb.co/k8hC5T9/Di-AR-Mark-v1-2-1-100-2-page-0020.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0020" border="0"></a>
+<a href="https://ibb.co/F0brw48"><img src="https://i.ibb.co/5nW08hs/Di-AR-Mark-v1-2-1-100-2-page-0021.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0021" border="0"></a>
+<a href="https://ibb.co/8sfYkFh"><img src="https://i.ibb.co/pwMhqCm/Di-AR-Mark-v1-2-1-100-2-page-0022.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0022" border="0"></a>
+<a href="https://ibb.co/M9dDn09"><img src="https://i.ibb.co/cxqcJnx/Di-AR-Mark-v1-2-1-100-2-page-0023.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0023" border="0"></a>
+<a href="https://ibb.co/cy9m09f"><img src="https://i.ibb.co/WHXTZX8/Di-AR-Mark-v1-2-1-100-2-page-0024.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0024" border="0"></a>
+<a href="https://ibb.co/LRwqsYZ"><img src="https://i.ibb.co/4tyD0KV/Di-AR-Mark-v1-2-1-100-2-page-0025.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0025" border="0"></a>
+<a href="https://ibb.co/SRCynxD"><img src="https://i.ibb.co/zGvxR5W/Di-AR-Mark-v1-2-1-100-2-page-0026.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0026" border="0"></a>
+<a href="https://ibb.co/L6kQx0W"><img src="https://i.ibb.co/3WrfpTq/Di-AR-Mark-v1-2-1-100-2-page-0027.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0027" border="0"></a>
+<a href="https://ibb.co/Bt685Tw"><img src="https://i.ibb.co/qdgb3mx/Di-AR-Mark-v1-2-1-100-2-page-0028.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0028" border="0"></a>
+<a href="https://ibb.co/TWnHp9F"><img src="https://i.ibb.co/kmrhkNW/Di-AR-Mark-v1-2-1-100-2-page-0029.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0029" border="0"></a>
+<a href="https://ibb.co/dLpnRfH"><img src="https://i.ibb.co/yYkLrNx/Di-AR-Mark-v1-2-1-100-2-page-0030.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0030" border="0"></a>
+<a href="https://ibb.co/2ddt5jR"><img src="https://i.ibb.co/qppsxRh/Di-AR-Mark-v1-2-1-100-2-page-0031.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0031" border="0"></a>
+<a href="https://ibb.co/zhS25VW"><img src="https://i.ibb.co/jvLw5k9/Di-AR-Mark-v1-2-1-100-2-page-0032.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0032" border="0"></a>
+<a href="https://ibb.co/wWxhq65"><img src="https://i.ibb.co/jM1kY4n/Di-AR-Mark-v1-2-1-100-2-page-0033.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0033" border="0"></a>
+<a href="https://ibb.co/qmnt5Gp"><img src="https://i.ibb.co/HG2Wdvq/Di-AR-Mark-v1-2-1-100-2-page-0034.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0034" border="0"></a>
+<a href="https://ibb.co/hZ9WcDT"><img src="https://i.ibb.co/nnmcBzK/Di-AR-Mark-v1-2-1-100-2-page-0035.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0035" border="0"></a>
+<a href="https://ibb.co/6HZcH6V"><img src="https://i.ibb.co/hBMxBph/Di-AR-Mark-v1-2-1-100-2-page-0036.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0036" border="0"></a>
+<a href="https://ibb.co/nCHQDbS"><img src="https://i.ibb.co/GTKCV0j/Di-AR-Mark-v1-2-1-100-2-page-0037.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0037" border="0"></a>
+<a href="https://ibb.co/DG59Wyp"><img src="https://i.ibb.co/pWJfw8y/Di-AR-Mark-v1-2-1-100-2-page-0038.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0038" border="0"></a>
+<a href="https://ibb.co/TPhcT0k"><img src="https://i.ibb.co/NWYx3Ns/Di-AR-Mark-v1-2-1-100-2-page-0039.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0039" border="0"></a>
+<a href="https://ibb.co/dfjzf9Y"><img src="https://i.ibb.co/0nmdnNb/Di-AR-Mark-v1-2-1-100-2-page-0040.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0040" border="0"></a>
+<a href="https://ibb.co/9G4r3d7"><img src="https://i.ibb.co/4JSVg0H/Di-AR-Mark-v1-2-1-100-2-page-0041.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0041" border="0"></a>
+<a href="https://ibb.co/1b1z7zS"><img src="https://i.ibb.co/x3WFXF4/Di-AR-Mark-v1-2-1-100-2-page-0042.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0042" border="0"></a>
+<a href="https://ibb.co/Cm0wry8"><img src="https://i.ibb.co/LYp0GyR/Di-AR-Mark-v1-2-1-100-2-page-0043.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0043" border="0"></a>
+<a href="https://ibb.co/W2FQmsZ"><img src="https://i.ibb.co/ZMK3qN5/Di-AR-Mark-v1-2-1-100-2-page-0044.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0044" border="0"></a>
+
+</p>
+
+        `;
+  }
+
+   function showInfo5() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/k0B1H9n/555.jpg" alt="555" border="0"></a>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+
+
+
+
+            <h1>Формирование текста Этикетки</h1>
+           <p>1. Формирование текста этикетки </p>
+</p>1.1. Отдел контроля качества: </p>
+</p>•	Формирует текст для этикетки в текстовом документе, включая состав продукта и другие необходимые данные. </p>
+</p>•	После создания текста, сотрудник отдела загружает файл с текстом в чат GPT (ваш помощник для проверки) для проверки на наличие орфографических и пунктуационных ошибок. </p>
+</p>1.2. Чат GPT (помощник):</p>
+</p>•	Тщательно проверяет текст на орфографические и пунктуационные ошибки, а также на логичность и целостность содержания. </p>
+</p>•	После проверки текст возвращается в отдел контроля качества для дальнейших действий.</p>
+<video width="400" height="300" controls> <source src="static/1.mp4" type="video/mp4">
+        `;
+  }
+
+ function showInfo6() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/wJdgT47/77.jpg" alt="77" border="0"></a>
+
+
+
+
+            <h1>Проверка перевода на соответсвие</h1>
+           <p>1. Работа с файлом от переводчика</p>
+</p>1.1. Отдел Снабжения: </p>
+</p>•	В чат GPT загружаем наш файл шаблон(Шаблон этот тот файл который Вы отправили переводчику) и загружаем файл полученный от переводчика(с переводом нашего файла).</p>
+</p>•	Пишем в чат "Проверь на ошибки и перевод"и нажимаем отправить.После проверки текст возвращается в отдел контроля качества для дальнейших действий.</p>
+</p>•   Далее смотрим ответ по анализу вдух документов от Чата GPT.</p>
+</p>•   Хотел упростить для Вас процесс по максимуму.Ниже можете посмотреть видео инструкцию этого процесса.</p>
+<video width="400" height="300" controls> <source src="static/2.mp4" type="video/mp4">
+        `;
+  }
+
+
+
+  function showInfo3() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/G98gWqf/6666.jpg" alt="6666" border="0"></a>
+            <h1>Соответсвие Знаков</h1>
+          </p>1.3 В  Чат GPT загружаете файл со знаками и пишите в чат "Проверь знаки на соответстиве текста этикетки".</p>
+</p> Если все знаки соответствуют,значит текст для этикетки соответствует знакам.</p>
+</p>1.4. Вы проверили два файла.1 файл -  текст на ошибки и 2 файл - соответствие текста к обязательным атрибутам.</p>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+<p><input name="3" type="button" value="Открыть текстовую инструкцию с картинками" /></p>
+<!-- Generated by https://tools.seo-auditor.com.ru/html-editor/ -->
+<p><span style="font-size:12px"><span style="background-color:#3498db"><input name="2" type="button" value="Открыть Видео Инструкцию" /></span></span></p>
+        `;
+  }
+
+ function showInfo7() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/XpVfJVP/7777.jpg" alt="7777" border="0"></a> <a href="https://imgbb.com/"><img src="https://i.ibb.co/Fx1v5B7/77777.jpg" alt="77777" border="0"></a>
+
+
+
+
+            <h1>Проверка штрих кода на соответствие продукта на этикетки.</h1>
+           <p>1У Вас есть файл excel с базой данных штрих кодов,в котором имееется весь список штрих-кодов на нашу продукцию,он нам будет  необходим для работы с Чатом GPT.</p>
+</p>Отдел Снабжения: </p>
+</p>•	1.Загружаем два файла в Чат GP.</p>
+</p>1 файл -  макет этикетки - полученной от Дизайнера.</p>
+</p>2 файл - excel документ с базой данный штрих-кодов.</p>
+</p>•	2.Пишем в чат: На выбор два вариата. </p>
+</p>•   Вариант №1 - Если мы хотим проверить только соотвествие штрих-кода на макете с нашей базой данных. </p>
+</p>В Чат GPT пишем "Проверь  штрих-код на этикетке с моей базой штрих-кодов в excel.Соответсвует ли штрих-код на этикетке тексту?" и нажимаем отправить.</p>
+</p>•   Вариант №2 - Если мы хотим провести полную проверку макета.</p>
+ </p>В Чат GPT пишем "Проверь эту этикетку на ошибки и соответствие (название, состав, ГОСТ ). И проверь Посмотри, какие знаки есть на этикетке, и проверь, соответствуют ли они продукту и требованиям.Проверка штрих-кода на этикетке" и нажимаем отправить.</p>
+</p>•   3.Вам придет ответ - прошел ли макет проверку.</p>
+</p>Если не прошел,тогда необходимо исправить выявленные ошибки и повторить проверку пункт№1 и пункт№2.</p>
+</p>•   4.Когда вы произвели проверку и уверены,что вся информация соответствует нашим данным перед отправкой Дизайнеру,тогда сообщите в отдел Маркетинга,что макет верный.</p>
+</p>•   5.После согласования Отделам ОКК,Отделом Снабжения и Отделом Маркетинга макета этикетки,полученной от Дизайнера. Макет отправляется в Типографию.</p>
+</p>•   6.Далее вы включитесь в процесс проверки этикетки на этапе проверки макета от Типографии.</p>
+<video width="400" height="300" controls> <source src="static/2.mp4" type="video/mp4">
+        `;
+  }
+
+
+
+
+
+ function showInfo8() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+
+
+
+            <h1>Отправка в Отдел Марктинга.</h1>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Rcg7G6h/Marketing.jpg" alt="Marketing" border="0"></a>
+
+</p>•   1.Когда вы произвели проверку и уверены,что вся информация соответствует нашим данным перед отправкой Дизайнеру,тогда сообщите в отдел Маркетинга,что макет верный.</p>
+</p>•   2.После согласования Отделам ОКК,Отделом Снабжения и Отделом Маркетинга макета этикетки,полученной от Дизайнера. Макет отправляется в Типографию.</p>
+</p>•   3.Далее вы включитесь в процесс проверки этикетки на этапе проверки макета от Типографии.</p>
+
+
+        `;
+  }
+
+function showInfo9() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Rcg7G6h/Marketing.jpg" alt="Marketing" border="0"></a>
+
+            <h1>Отдел Маркетинга</h1>
+          </p>В отдел маркетинга приходят проверенные данные по этикетки от отдела контроля качества и отдела снабжения.</p>
+</p> Отдел марктетинга отправляет данные Дизайнеру для создания макета этикетки.</p>
+</p>Задача маркетинга проверить цвета этикетки после работы Дизайнера  и наличие элементов на макете и их порядок и расположение.</p>
+</p>Далее макет отправляют для проверки в отдел контроля качества для проверки текста на ошибки и соответствие знаков.</p>
+</p>Макет отправляют  в отдел Снабжения для проверки перевода,проверки штрих-кода,QR-кода.</p>
+</p>Как макет будет проверен всеми отделами учавтсвующими в процессах формирования этикетки,Макет согласуется и отправляется в Типографию.</p>
+
+        `;
+  }
+
+
+function showInfo11() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/KqKfj5L"><img src="https://i.ibb.co/fpDyYXn/1234.png" alt="1234" border="0"></a>
+
+
+</p>Как макет будет проверен всеми отделами учавтсвующими в процессах формирования этикетки,Макет согласуется и отправляется в Типографию.</p>
+
+        `;
+  }
+
+function showInfo12() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/fqhjJHD"><img src="https://i.ibb.co/MZYFd7B/12345.jpg" alt="12345" border="0"></a>
+
+</p>Отправляем наш макет в типографию.</p>
+
+        `;
+  }
+
+
+
+
+function showInfo4() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/1bN5Cfz/edo1.jpg" alt="edo1" border="0"></a>
+            <h1>Отправка в Отдел снабжения</h1>
+          </p>1.Когда вы произвели проверку и уверены,что вся информация соответствует для дальнейшего формирования этикетки,тогда отправляете  проверенные два файла в отдел снабжения для дальнейшей работы с этикеткой..</p>
+</p>2.После создания макета этикетки Дизайнером - Вы снова включитесь в процесс работы с этикеткой,чтобы проверить работу Дизайнера на предмет возможного изменения текста или знаков в процессе создания макета Дизайнером.</p>
+
+
+
+
+        `;
+  }
+
+    function showInfo() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+            <h1>Информация</h1>
+            <p>Тут скоро будет информация</p>
+        `;
+    }
+</script>
+
+</body>
+</html>

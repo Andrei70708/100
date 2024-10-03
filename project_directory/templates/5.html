@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример меню с подменю</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #444;
+            margin-bottom: 5px;
+        }
+
+        .menu-item:hover {
+            background-color: #555;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .submenu-item {
+            padding: 5px 0;
+        }
+
+        .submenu-item a {
+            color: #ccc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .submenu-item a:hover {
+            color: white;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+
+      <div class="menu-item">
+         <h1>DIAR</h1>
+        <p>Оператор сериализации</p>
+         <p>Техническая поддержка</p>
+        </div>
+
+<div class="menu-item" onclick="toggleSubmenu('submenu1')">Инструкция</div>
+    <div class="submenu" id="submenu1">
+      <div class="submenu-item"><a onclick="showInfo1()">Инструкция - Рабочий стол оператора на линии сериализации </a></div>
+      </div>
+
+       <div class="menu-item" onclick="toggleSubmenu('submenu2')">Часто задавемые вопросы</div>
+        <div class="submenu" id="submenu2">
+            <div class="submenu-item"><a onclick="showInfo5()">Что входит в комплекс серилаизации?</a></div>
+            <div class="submenu-item"><a onclick="showInfo3()">Как запустить аппликатор?</a></div>
+            <div class="submenu-item"><a onclick="showInfo4()">Как запустить монитор</a></div>
+             <div class="submenu-item"><a onclick="showInfo6()">Запустил Монитор,что делать дальше</a></div>
+            <div class="submenu-item"><a onclick="showInfo8()">Какую информацию мне показывет монитор?</a></div>
+           <div class="submenu-item"><a onclick="showInfo7()">Как запустить отбраковщик?</a></div>
+           <div class="submenu-item"><a onclick="showInfo9()">Как проверить отбраковщик?</a></div>
+           <div class="submenu-item"><a onclick="showInfo10()">Кож маркировки наносится не по центру</a></div>
+           <div class="submenu-item"><a onclick="showInfo11()">Как работать с ручным сканером?</a></div>
+           <div class="submenu-item"><a onclick="showInfo12()">Почему продукцию бракует с кодами маркировки?</a></div>
+           <div class="submenu-item"><a onclick="showInfo13()">Отбраковщик стал много браковать,что делать?</a></div>
+           <div class="submenu-item"><a onclick="showInfo14()">Что мне делать с продукцией,которая отбраковалась?</a></div>
+          
+         </div>
+
+
+        <div class="menu-item" onclick="toggleSubmenu('submenu3')">Проверка оборудования перед запуском</div>
+        <div class="submenu" id="submenu3">
+            
+            <div class="submenu-item"><a onclick="showInfo15()">Проверка</a></div>
+         
+        </div>
+
+        <div class="menu-item" onclick="toggleSubmenu('submenu4')">Написать в техническую поддержку</div>
+        <div class="submenu" id="submenu4">
+            <div class="submenu-item"><a onclick="showInfo()">Заполнить Заявку на тех.обсуживание</a></div>
+            <div class="submenu-item"><a onclick="showInfo()">Перейти в телеграмм бот тех.поддержки</a></div>
+            <div class="submenu-item"><a onclick="showInfo()">Отправить запрос в тех.поддержку</a></div>
+        </div>
+
+
+  
+</div>
+
+
+<div class="content" id="content">
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/yWpyYpj/Diar1.jpg" alt="Diar1" border="0"></a>
+        <h1> Оператор сериализации.Техническая поддержка </h1>
+<a href="https://ibb.co/Nxd9mw8"><img src="https://i.ibb.co/hsJBZpP/tech-support.jpg" alt="tech-support" border="0"></a>
+         <h1>Данный ресурс предназначен для технической поддержки</h1>
+
+    </div>
+</div>
+
+<script>
+    function toggleSubmenu(submenuId) {
+        const submenu = document.getElementById(submenuId);
+        if (submenu.style.display === "block") {
+            submenu.style.display = "none";
+        } else {
+            submenu.style.display = "block";
+        }
+    }
+    function showInfo1() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/WkhnqDc"><img src="https://i.ibb.co/3p31Gf0/stolserializacii-4-page-0001.jpg" alt="stolserializacii-4-page-0001" border="0"></a>
+<a href="https://ibb.co/MSTbf2b"><img src="https://i.ibb.co/JtLNqBN/stolserializacii-4-page-0002.jpg" alt="stolserializacii-4-page-0002" border="0"></a>
+<a href="https://ibb.co/QDYPHCw"><img src="https://i.ibb.co/TWP40b3/stolserializacii-4-page-0003.jpg" alt="stolserializacii-4-page-0003" border="0"></a>
+<a href="https://ibb.co/7n8sgNL"><img src="https://i.ibb.co/dP18bJx/stolserializacii-4-page-0004.jpg" alt="stolserializacii-4-page-0004" border="0"></a>
+<a href="https://ibb.co/n79TXDC"><img src="https://i.ibb.co/D9hNB7p/stolserializacii-4-page-0005.jpg" alt="stolserializacii-4-page-0005" border="0"></a>
+<a href="https://ibb.co/J7VGkPC"><img src="https://i.ibb.co/hWb48vC/stolserializacii-4-page-0006.jpg" alt="stolserializacii-4-page-0006" border="0"></a>
+<a href="https://ibb.co/Y3VN2Q3"><img src="https://i.ibb.co/56J1T46/stolserializacii-4-page-0007.jpg" alt="stolserializacii-4-page-0007" border="0"></a>
+<a href="https://ibb.co/GcZ1qYM"><img src="https://i.ibb.co/KFtQJ4s/stolserializacii-4-page-0008.jpg" alt="stolserializacii-4-page-0008" border="0"></a>
+<a href="https://ibb.co/QHCbFCv"><img src="https://i.ibb.co/wQw0Nwh/stolserializacii-4-page-0009.jpg" alt="stolserializacii-4-page-0009" border="0"></a>
+<a href="https://ibb.co/c85jP90"><img src="https://i.ibb.co/09NxkLT/stolserializacii-4-page-0010.jpg" alt="stolserializacii-4-page-0010" border="0"></a>
+      
+        `;
+  }
+
+
+  function showInfo2() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/KqYC9qV"><img src="https://i.ibb.co/BZm8gZT/Di-AR-Mark-v1-2-1-100-2-page-0002.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0002" border="0"></a>
+<a href="https://ibb.co/vdHx5xP"><img src="https://i.ibb.co/5j6WDW8/Di-AR-Mark-v1-2-1-100-2-page-0003.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0003" border="0"></a>
+<a href="https://ibb.co/YDRjSnx"><img src="https://i.ibb.co/TKvhGjs/Di-AR-Mark-v1-2-1-100-2-page-0004.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0004" border="0"></a>
+<a href="https://ibb.co/PtXbxgQ"><img src="https://i.ibb.co/JC6bnHQ/Di-AR-Mark-v1-2-1-100-2-page-0005.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0005" border="0"></a>
+<a href="https://ibb.co/nz637Bw"><img src="https://i.ibb.co/m6bv90R/Di-AR-Mark-v1-2-1-100-2-page-0006.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0006" border="0"></a>
+<a href="https://ibb.co/0jDTdFr"><img src="https://i.ibb.co/HDF6kxq/Di-AR-Mark-v1-2-1-100-2-page-0007.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0007" border="0"></a>
+<a href="https://ibb.co/DGD054P"><img src="https://i.ibb.co/B4V0qLH/Di-AR-Mark-v1-2-1-100-2-page-0008.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0008" border="0"></a>
+<a href="https://ibb.co/Tb9W3rz"><img src="https://i.ibb.co/61jXCN6/Di-AR-Mark-v1-2-1-100-2-page-0009.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0009" border="0"></a>
+<a href="https://ibb.co/hKNThkN"><img src="https://i.ibb.co/MRHJWbH/Di-AR-Mark-v1-2-1-100-2-page-0010.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0010" border="0"></a>
+<a href="https://ibb.co/2Zk6Dgf"><img src="https://i.ibb.co/QDKc2r1/Di-AR-Mark-v1-2-1-100-2-page-0011.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0011" border="0"></a>
+<a href="https://ibb.co/cgWn4Vz"><img src="https://i.ibb.co/0D0bHvP/Di-AR-Mark-v1-2-1-100-2-page-0012.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0012" border="0"></a>
+<a href="https://ibb.co/6R4Rygt"><img src="https://i.ibb.co/wNKNdMQ/Di-AR-Mark-v1-2-1-100-2-page-0013.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0013" border="0"></a>
+<a href="https://ibb.co/v4rs7Zr"><img src="https://i.ibb.co/whbJ9Mb/Di-AR-Mark-v1-2-1-100-2-page-0014.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0014" border="0"></a>
+<a href="https://ibb.co/ZSxSJqf"><img src="https://i.ibb.co/68F8Zjy/Di-AR-Mark-v1-2-1-100-2-page-0015.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0015" border="0"></a>
+<a href="https://ibb.co/30pTx5N"><img src="https://i.ibb.co/WckHrNy/Di-AR-Mark-v1-2-1-100-2-page-0016.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0016" border="0"></a>
+<a href="https://ibb.co/pJ99MJF"><img src="https://i.ibb.co/0hdd6hb/Di-AR-Mark-v1-2-1-100-2-page-0017.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0017" border="0"></a>
+<a href="https://ibb.co/wRD5Zp3"><img src="https://i.ibb.co/f2mjVrB/Di-AR-Mark-v1-2-1-100-2-page-0018.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0018" border="0"></a>
+<a href="https://ibb.co/1fwwxVX"><img src="https://i.ibb.co/DDSSnXM/Di-AR-Mark-v1-2-1-100-2-page-0019.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0019" border="0"></a>
+<a href="https://ibb.co/MVR0ZHG"><img src="https://i.ibb.co/k8hC5T9/Di-AR-Mark-v1-2-1-100-2-page-0020.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0020" border="0"></a>
+<a href="https://ibb.co/F0brw48"><img src="https://i.ibb.co/5nW08hs/Di-AR-Mark-v1-2-1-100-2-page-0021.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0021" border="0"></a>
+<a href="https://ibb.co/8sfYkFh"><img src="https://i.ibb.co/pwMhqCm/Di-AR-Mark-v1-2-1-100-2-page-0022.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0022" border="0"></a>
+<a href="https://ibb.co/M9dDn09"><img src="https://i.ibb.co/cxqcJnx/Di-AR-Mark-v1-2-1-100-2-page-0023.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0023" border="0"></a>
+<a href="https://ibb.co/cy9m09f"><img src="https://i.ibb.co/WHXTZX8/Di-AR-Mark-v1-2-1-100-2-page-0024.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0024" border="0"></a>
+<a href="https://ibb.co/LRwqsYZ"><img src="https://i.ibb.co/4tyD0KV/Di-AR-Mark-v1-2-1-100-2-page-0025.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0025" border="0"></a>
+<a href="https://ibb.co/SRCynxD"><img src="https://i.ibb.co/zGvxR5W/Di-AR-Mark-v1-2-1-100-2-page-0026.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0026" border="0"></a>
+<a href="https://ibb.co/L6kQx0W"><img src="https://i.ibb.co/3WrfpTq/Di-AR-Mark-v1-2-1-100-2-page-0027.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0027" border="0"></a>
+<a href="https://ibb.co/Bt685Tw"><img src="https://i.ibb.co/qdgb3mx/Di-AR-Mark-v1-2-1-100-2-page-0028.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0028" border="0"></a>
+<a href="https://ibb.co/TWnHp9F"><img src="https://i.ibb.co/kmrhkNW/Di-AR-Mark-v1-2-1-100-2-page-0029.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0029" border="0"></a>
+<a href="https://ibb.co/dLpnRfH"><img src="https://i.ibb.co/yYkLrNx/Di-AR-Mark-v1-2-1-100-2-page-0030.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0030" border="0"></a>
+<a href="https://ibb.co/2ddt5jR"><img src="https://i.ibb.co/qppsxRh/Di-AR-Mark-v1-2-1-100-2-page-0031.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0031" border="0"></a>
+<a href="https://ibb.co/zhS25VW"><img src="https://i.ibb.co/jvLw5k9/Di-AR-Mark-v1-2-1-100-2-page-0032.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0032" border="0"></a>
+<a href="https://ibb.co/wWxhq65"><img src="https://i.ibb.co/jM1kY4n/Di-AR-Mark-v1-2-1-100-2-page-0033.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0033" border="0"></a>
+<a href="https://ibb.co/qmnt5Gp"><img src="https://i.ibb.co/HG2Wdvq/Di-AR-Mark-v1-2-1-100-2-page-0034.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0034" border="0"></a>
+<a href="https://ibb.co/hZ9WcDT"><img src="https://i.ibb.co/nnmcBzK/Di-AR-Mark-v1-2-1-100-2-page-0035.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0035" border="0"></a>
+<a href="https://ibb.co/6HZcH6V"><img src="https://i.ibb.co/hBMxBph/Di-AR-Mark-v1-2-1-100-2-page-0036.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0036" border="0"></a>
+<a href="https://ibb.co/nCHQDbS"><img src="https://i.ibb.co/GTKCV0j/Di-AR-Mark-v1-2-1-100-2-page-0037.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0037" border="0"></a>
+<a href="https://ibb.co/DG59Wyp"><img src="https://i.ibb.co/pWJfw8y/Di-AR-Mark-v1-2-1-100-2-page-0038.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0038" border="0"></a>
+<a href="https://ibb.co/TPhcT0k"><img src="https://i.ibb.co/NWYx3Ns/Di-AR-Mark-v1-2-1-100-2-page-0039.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0039" border="0"></a>
+<a href="https://ibb.co/dfjzf9Y"><img src="https://i.ibb.co/0nmdnNb/Di-AR-Mark-v1-2-1-100-2-page-0040.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0040" border="0"></a>
+<a href="https://ibb.co/9G4r3d7"><img src="https://i.ibb.co/4JSVg0H/Di-AR-Mark-v1-2-1-100-2-page-0041.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0041" border="0"></a>
+<a href="https://ibb.co/1b1z7zS"><img src="https://i.ibb.co/x3WFXF4/Di-AR-Mark-v1-2-1-100-2-page-0042.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0042" border="0"></a>
+<a href="https://ibb.co/Cm0wry8"><img src="https://i.ibb.co/LYp0GyR/Di-AR-Mark-v1-2-1-100-2-page-0043.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0043" border="0"></a>
+<a href="https://ibb.co/W2FQmsZ"><img src="https://i.ibb.co/ZMK3qN5/Di-AR-Mark-v1-2-1-100-2-page-0044.jpg" alt="Di-AR-Mark-v1-2-1-100-2-page-0044" border="0"></a>
+
+
+
+        `;
+  }
+
+   function showInfo5() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+
+
+              <p>Список устройств,которые учавствуют в маркировке. смотрим на рисунок 1 и 2.  <p>
+<a href="https://ibb.co/DgCXb03"><img src="https://i.ibb.co/1JqVnFH/spisok.jpg" alt="spisok" border="0"></a>
+        `;
+  }
+
+ function showInfo6() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+            <h1>Запустил Монитор,что делать дальше?</h1>
+           <p>1. Далее запускайте заказ,но только если вы проверили всё оборудование на линии и готовы к запуску процесса маркировки.</p>
+</p>2.Убедитесь,что заказ есть. На мониторе вы должны увидеть название заказа(Что сейчас будет производиться и дата заказа.) .</p>
+ </p>3.Если вы не видите название заказа,тогда надо ждать пока заказ не отправят в производство.</p>
+ </p>4.Если заказ есть,тогда жмите на мониторе на слово "Далее"(это значит вы запускаете заказ) и процесс запущен..</p>
+
+        `;
+  }
+
+
+
+  function showInfo3() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+            <h1>Аппликтор</h1>
+          </p>Порядок действий смотрим на рисунок 1 и 2. Если аппликтор не включился,значит нет подачи электроэнергии,в этом случае обратитесь за помощью к электрикам.</p>
+<a href="https://ibb.co/rsC2kff"><img src="https://i.ibb.co/fvhdMGG/zapusk-A150-1.jpg" alt="zapusk-A150-1" border="0"></a>
+<a href="https://ibb.co/1X2fPwt"><img src="https://i.ibb.co/HPgDbkf/zapusk-A150-2.jpg" alt="zapusk-A150-2" border="0"></a>
+        `;
+  }
+
+ function showInfo8() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+<a href="https://ibb.co/WkhnqDc"><img src="https://i.ibb.co/3p31Gf0/stolserializacii-4-page-0001.jpg" alt="stolserializacii-4-page-0001" border="0"></a>
+<a href="https://ibb.co/MSTbf2b"><img src="https://i.ibb.co/JtLNqBN/stolserializacii-4-page-0002.jpg" alt="stolserializacii-4-page-0002" border="0"></a>
+<a href="https://ibb.co/QDYPHCw"><img src="https://i.ibb.co/TWP40b3/stolserializacii-4-page-0003.jpg" alt="stolserializacii-4-page-0003" border="0"></a>
+<a href="https://ibb.co/7n8sgNL"><img src="https://i.ibb.co/dP18bJx/stolserializacii-4-page-0004.jpg" alt="stolserializacii-4-page-0004" border="0"></a>
+<a href="https://ibb.co/n79TXDC"><img src="https://i.ibb.co/D9hNB7p/stolserializacii-4-page-0005.jpg" alt="stolserializacii-4-page-0005" border="0"></a>
+<a href="https://ibb.co/J7VGkPC"><img src="https://i.ibb.co/hWb48vC/stolserializacii-4-page-0006.jpg" alt="stolserializacii-4-page-0006" border="0"></a>
+<a href="https://ibb.co/Y3VN2Q3"><img src="https://i.ibb.co/56J1T46/stolserializacii-4-page-0007.jpg" alt="stolserializacii-4-page-0007" border="0"></a>
+<a href="https://ibb.co/GcZ1qYM"><img src="https://i.ibb.co/KFtQJ4s/stolserializacii-4-page-0008.jpg" alt="stolserializacii-4-page-0008" border="0"></a>
+<a href="https://ibb.co/QHCbFCv"><img src="https://i.ibb.co/wQw0Nwh/stolserializacii-4-page-0009.jpg" alt="stolserializacii-4-page-0009" border="0"></a>
+<a href="https://ibb.co/c85jP90"><img src="https://i.ibb.co/09NxkLT/stolserializacii-4-page-0010.jpg" alt="stolserializacii-4-page-0010" border="0"></a>
+
+
+
+          
+        `;
+  }
+
+
+
+
+
+ function showInfo7() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+
+
+
+
+            <h1>Для запуска отбраковщика смотрим рис. Подача сжатого воздуха обязательное условие для работы отбраковщика.</h1>
+<a href="https://ibb.co/QFVG54P"><img src="https://i.ibb.co/HDyQJjt/Otbrakovchik2.jpg" alt="Otbrakovchik2" border="0"></a>
+<a href="https://ibb.co/Jr4RdD1"><img src="https://i.ibb.co/h2jRM36/Otbrakovchik1.jpg" alt="Otbrakovchik1" border="0"></a>
+
+           `;
+  }
+
+function showInfo9() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Как проверить от браковщик</h1>
+
+            </p>Проверяем отбраковщик – для этого пускаем продукцию по конвейру и закрываем объектив камеры тех.зрения рукой когда мимо камеры проезажет банка.</p>
+</p>В этом случае должно сработать устройства отбраковщика и послать банку на стол для брака.</p>
+
+        `;
+  }
+
+
+function showInfo10() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Код маркировки наносится не по центру</h1>
+
+</p>Если код маркировки наносится не по центру - значит не правильно настроен аппликатор.</p>
+</p>Смотрите инструкцию к аппликатору</p>
+
+        `;
+  }
+
+function showInfo11() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Как работать с ручным сканером?</h1>
+</p>Смотрим рисунок..</p>
+</p>Проверяем,что сканер работает..</p>
+</p> Принцип работы сканера описан в инструкции для операторов.</p>
+</p>Наведите сканер на код маркировки и нажмите на кнопку сканера и он отсканирует код на крышке.На мониторе появится надпись,что данный код был отсканирован ручным сканером.</p>
+<a href="https://ibb.co/zQhcRQb"><img src="https://i.ibb.co/tQMfsQc/skaner1.jpg" alt="skaner1" border="0"></a>
+<a href="https://ibb.co/sJ9rZS8"><img src="https://i.ibb.co/k62FtnN/skaner2.jpg" alt="skaner2" border="0"></a>
+
+        `;
+  }
+
+
+function showInfo12() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Почему продукцию бракует с кодами маркировки?</h1>
+</p>Если бракует банку с кодами маркировки,значит код не прошел проверку. </p> 
+</p> Попробуйте отсканировать его ручным сканером,если код опять не прошел проверку,тогда отклейте код и отправьте банку под аппликатор для повторного нанесения кода..</p>
+
+
+        `;
+  }
+
+function showInfo13() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Отбраковщик стал много браковать,что делать?</h1>
+</p> Если на стол брака резко стало браковаться большое кол-во продукции.Почему это происходит и как решить по порядку: </p> 
+</p> 1. Посмотрите на монитор и вы увидите причину брака(смотрим инструкцию для операторов,вы должны уметь понимать какие данные вам показывает монитор). </p> 
+</p> Проверьте есть ли коды маркировки на крышках.Если нету тогда:</p> 
+</p> А) Проверьте не порвалась ли лента с кодами на аппликаторе,если порвалась - установите снова.</p> 
+</p> Б) Проверьте положение носика аппликатора - он должен быть настроен под нужный размер банки.</p> 
+</p> 3. Проверьте датчики и камеру тех.зрения(Смотрим инструкцию для операторов раздел проверка оборудования перед запуском маркировки).  .
+
+
+        `;
+  }
+
+function showInfo14() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Что мне делать с продукцией,которая отбраковалась?</h1>
+</p> Если бракует банку с кодами маркировки,значит код не прошел проверку.</p> 
+</p> Попробуйте отсканировать его ручным сканером,если код опять не прошел проверку,тогда отклейте код и отправьте банку под аппликатор для повторного нанесения кода.</p> 
+
+    `;
+  }
+
+
+function showInfo15() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+<h1>Проверка оборудования перед запуском</h1>
+<a href="https://ibb.co/sjjCzxZ"><img src="https://i.ibb.co/rkk3N8V/4-page-0001.jpg" alt="4-page-0001" border="0"></a>
+<a href="https://ibb.co/FxFxhvy"><img src="https://i.ibb.co/gjxjr1f/4-page-0002.jpg" alt="4-page-0002" border="0"></a>
+<a href="https://ibb.co/wsHCrbD"><img src="https://i.ibb.co/L5w6hq4/4-page-0003.jpg" alt="4-page-0003" border="0"></a>
+<a href="https://ibb.co/m5NkJ6c"><img src="https://i.ibb.co/CKPgBhH/4-page-0004.jpg" alt="4-page-0004" border="0"></a>
+<a href="https://ibb.co/d0N210g"><img src="https://i.ibb.co/PZ2h3ZQ/4-page-0005.jpg" alt="4-page-0005" border="0"></a>
+<a href="https://ibb.co/hgp6Y8P"><img src="https://i.ibb.co/8mFCY8W/4-page-0006.jpg" alt="4-page-0006" border="0"></a>
+<a href="https://ibb.co/gvkDYyf"><img src="https://i.ibb.co/s58F7jN/4-page-0007.jpg" alt="4-page-0007" border="0"></a>
+<a href="https://ibb.co/TLxGGCH"><img src="https://i.ibb.co/0tRLLwf/4-page-0008.jpg" alt="4-page-0008" border="0"></a>
+<a href="https://ibb.co/mRpsbkR"><img src="https://i.ibb.co/7ShcjPS/4-page-0009.jpg" alt="4-page-0009" border="0"></a>
+<a href="https://ibb.co/F5vyk79"><img src="https://i.ibb.co/8r3fn8J/4-page-0010.jpg" alt="4-page-0010" border="0"></a>
+<a href="https://ibb.co/XbRL7vc"><img src="https://i.ibb.co/t4rKqWV/4-page-0011.jpg" alt="4-page-0011" border="0"></a>
+<a href="https://ibb.co/WBSHfHH"><img src="https://i.ibb.co/8PFm9mm/4-page-0012.jpg" alt="4-page-0012" border="0"></a>
+<a href="https://ibb.co/dDNrM3H"><img src="https://i.ibb.co/bX4PmyG/4-page-0013.jpg" alt="4-page-0013" border="0"></a>
+<a href="https://ibb.co/V36x1qG"><img src="https://i.ibb.co/52Zk0R3/4-page-0014.jpg" alt="4-page-0014" border="0"></a>
+
+           `;
+
+  }
+
+
+
+function showInfo4() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+
+            <h1>Как запустить Монитор</h1>
+          </p>1.КСмотрим на рисунок.</p>
+<a href="https://ibb.co/tZnLJyD"><img src="https://i.ibb.co/1sBzmHT/monitor1.jpg" alt="monitor1" border="0"></a>
+<a href="https://ibb.co/2KdQmRc"><img src="https://i.ibb.co/6sFxVGD/monitor2.jpg" alt="monitor2" border="0"></a>
+
+        `;
+  }
+
+    function showInfo() {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+            <h1>Информация</h1>
+            <p>Тут скоро будет информация</p>
+        `;
+    }
+</script>
+
+</body>
+</html>

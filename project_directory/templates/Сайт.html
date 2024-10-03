@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техническая поддержка - АО Пищепром</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-image: url('your-background-image.jpg'); /* Задний фон */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 300px; /* Устанавливаем ширину кнопки */
+            height: 150px; /* Устанавливаем высоту кнопки */
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .button-1 {
+            background-image: url('https://i.ibb.co/5RsBqDw/0a1659e83bffc0180d3892fb58b04f10.png');
+        }
+
+        .button-2 {
+            background-image: url('https://i.ibb.co/B2mYwM1/670-125-60-colors-19-2-page-0003.jpg');
+        }
+
+        .button-3 {
+           background-image: url('https://i.ibb.co/D18c9JZ/image.jpg');
+        }
+
+        .button-4 {
+            background-image: url('https://i.ibb.co/Zmt5fzH/image.jpg');
+        }
+
+        .button-5 {
+                     background-image: url('https://i.ibb.co/YT7hhXP/image.jpg');
+        }
+
+        .button-6 {
+            background-image: url('https://i.ibb.co/Jjr3vHR/Monitoring-proizvodstva.jpg');
+        }
+
+        .button-label {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Функция проверки пароля
+        function checkPassword(url) {
+            var password = prompt("Введите пароль:");
+            if (password === "12345") {
+                window.location.href = url;
+            } else {
+                alert("Неверный пароль!");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Система поддержки АО "Пищепром"</h1>
+        <p>Добро пожаловать на сайт технической поддержки сотрудников АО "Пищепром". Наш сервис создан для помощи в решении технических вопросов, связанных с внутренними системами компании.</p>
+
+        <div class="button-container">
+            <div class="button-label">Честный Знак</div>
+            <a href="55.html" class="button button-1" onclick="window.location.href='/честный_знак'">Честный знак</button>></a>
+        </div>
+
+        <div class="button-container">
+            <div class="button-label">Проверка Этикеток</div>
+            <a href="18.html" class="button button-2"></a>
+        </div>
+
+        <div class="button-container">
+            <div class="button-label">СКУД</div>
+            <div class="button button-3" onclick="checkPassword('скуд.html')"></div>
+        </div>
+
+        <div class="button-container">
+            <div class="button-label">Видеонаблюдение</div>
+            <div class="button button-4" onclick="checkPassword('видеонаблюдение.html')"></div>
+        </div>
+
+        <div class="button-container">
+            <div class="button-label">Охрана</div>
+            <div class="button button-5" onclick="checkPassword('эцп.html')"></div>
+        </div>
+
+
+
+        <div class="button-container">
+            <div class="button-label">Датчики Мониторинг</div>
+            <div class="button button-6" onclick="checkPassword('датчики.html')"></div>
+        </div>
+    </div>
+
+</body>
+</html>

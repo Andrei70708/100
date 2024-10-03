@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример меню с подменю</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="menu-item">
+            <h1>АО Пищепром</h1>
+            <p>Проверка Этикеток</p>
+        </div>
+
+        <div class="menu-item"><a href="/structure">Структура формирования этикетки</a></div>
+        <div class="menu-item"><a href="/quality_control">Для Отдела Контроля Качества</a></div>
+        <div class="menu-item"><a href="/supply_department">Для Отдела Снабжения</a></div>
+        <div class="menu-item"><a href="/marketing_department">Для Отдела Маркетинга</a></div>
+        <div class="menu-item"><a href="/printing_department">Типография</a></div>
+        <div class="menu-item"><a href="/label_check">Проверка этикетки после доставки</a></div>
+        <div class="menu-item"><a href="/support">Написать в тех.поддержку</a></div>
+    </div>
+
+    <div class="content">
+        <h1>Этапы проверки этикеток</h1>
+        <p>Описание этапов проверки этикеток в различных отделах компании.</p>
+        <img src="https://i.ibb.co/k0B1H9n/555.jpg" alt="555" border="0">
+
+</p>1. Формирование текста этикетки. </p>
+
+<h1></p>1.1. Отдел контроля качества:</p></h1>
+</p>• Формирует текст для этикетки в текстовом документе, включая состав продукта и другие необходимые данные.</p>
+</p>• После создания текста, сотрудник отдела загружает файл с текстом в чат GPT (ваш помощник для проверки) для проверки на наличие орфографических и пунктуационных ошибок.</p>
+<h1></p>1.2. Чат GPT (помощник):</p></h1>
+</p>• Тщательно проверяет текст на орфографические и пунктуационные ошибки, а также на логичность и целостность содержания.</p>
+</p>• После проверки текст возвращается в отдел контроля качества для дальнейших действий..</p>
+    </div>
+</div>
+
+</body>
+</html>
+

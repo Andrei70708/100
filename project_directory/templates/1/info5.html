@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Формирование текста</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>АО Пищепром</h1>
+            <p>Проверка Этикеток</p>
+            <div class="menu-item">
+                <a href="/">Главная</a>
+            </div>
+            <div class="menu-item">
+                <a href="/info1">Этапы формирования по отделам</a>
+            </div>
+            <div class="menu-item">
+                <a href="/info2">Полная текстовая инструкция</a>
+            </div>
+        </div>
+        <div class="content">
+            <img src="{{ url_for('static', filename='images/555.jpg') }}" alt="Формирование">
+            <h1>Формирование текста этикетки</h1>
+            <p>1. Формирование текста этикетки и проверка на ошибки...</p>
+        </div>
+    </div>
+</body>
+</html>
